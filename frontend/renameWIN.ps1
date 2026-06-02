@@ -1,0 +1,1 @@
+cd dist; Get-ChildItem -Filter *.js | ForEach-Object { $newName = $_.Name -replace '\.js$', '.cjs'; Move-Item $_.FullName $newName -Force }; Get-ChildItem -Filter *.js.map | ForEach-Object { $newName = $_.Name -replace '\.js\.map$', '.cjs.map'; Move-Item $_.FullName $newName -Force }

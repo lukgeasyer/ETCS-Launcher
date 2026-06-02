@@ -1,0 +1,39 @@
+directories:
+  output: out
+  buildResources: build
+appId: etcs.ebd.etcslauncher.app
+productName: ETCS-Launcher
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: true
+win:
+  icon: ./static/appIcon
+  target:
+    - target: nsis
+      arch:
+        - x64
+mac:
+  icon: ./static/appIcon
+  darkModeSupport: true
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+files: [
+  "build/**",
+  "node_modules/**",
+  "dist/**",
+]
+extraResources: [ {
+  from: "../backend/target/etcslauncher.backend-1.1.0.jar",
+  to: "./backend/etcslauncher.backend-1.1.0.jar"
+},
+  {
+    from: "../jdk/${os}/jdk-21.0.4-${arch}",
+    to: "./backend/jdk/"
+  }
+]
+electronLanguages: [ "en" ]
+

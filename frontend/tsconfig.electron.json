@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "module": "commonJS",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "types": [
+      "stompjs"
+    ]
+  },
+  "files": [
+    "src/main.ts",
+    "src/preload.ts"
+  ]
+}

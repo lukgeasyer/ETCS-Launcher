@@ -1,0 +1,1 @@
+<div class="placeholder animate-pulse flex h-full max-h-full"/>
