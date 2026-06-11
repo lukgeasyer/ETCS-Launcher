@@ -22,4 +22,4 @@ repositories for more information.
 # Installing
 An executable can be created by following the instructios in [the README for the frontend](/frontend/README.md).
 
-The backend can be built independently by following the instructions in [the README for the backend](/frontend/README.md).
+The backend can be built independently by following the instructions in [the README for the backend](/backend/README.md).
