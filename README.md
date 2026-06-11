@@ -20,7 +20,10 @@ which is running in the background. See the corresponding
 repositories for more information.
 
 # Structure
-The structure of the backend and frontend is eplained in the corresponding README files: [Backend](backend/concept-backend.md), [Frontend](frontend/concept-frontend.md)
+The structure of the backend and frontend is eplained in the corresponding README files: [Backend](backend/concept-backend.md), [Frontend](frontend/concept-frontend.md).
+
+# Using the backend independently 
+You can deploy your own frontend as you wish and use the backend for managing the ETCS Modules. The manual for using the backend API is found in [api-backend.md](backend/api-backend.md).
 
 # Installing
 An executable can be created by following the instructios in [the README for the frontend](/frontend/README.md).
