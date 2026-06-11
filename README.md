@@ -19,6 +19,9 @@ folder where the `.jar` lies and the ETCS-smartTMS module needs a SQL server
 which is running in the background. See the corresponding
 repositories for more information.
 
+# Structure
+The structure of the backend and frontend is eplained in the corresponding README files: [Backend](backend/concept-backend.md), [Frontend](frontend/concept-frontend.md)
+
 # Installing
 An executable can be created by following the instructios in [the README for the frontend](/frontend/README.md).
 
