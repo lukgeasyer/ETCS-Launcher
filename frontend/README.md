@@ -1,6 +1,6 @@
 ## Developing
 
-Use the IDE of you're choice, WebStorm or Visual Studio Code is recommended. The dependencies for the
+Use the IDE of youre choice, WebStorm or Visual Studio Code is recommended. The dependencies for the
 frontend are organized via `npm` and recorded in the `package.json` folder.
 
 Installing the required dependencies is done via executing `npm install`.
