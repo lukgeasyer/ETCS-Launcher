@@ -1,48 +1,43 @@
-# Schnittstellendokumentation
+# API documentation ETCS-Launcher - Backend
 
-## etcsLauncher - Backend
-
-Das Backend als .jar gepackt und ausgeführt öffnet
-eine [REST API](https://de.wikipedia.org/wiki/Representational_State_Transfer#Umsetzung), mithilfe
-derer die Funktionen aus dem Backend ausgeführt werden können sowie einen WebSocket, auf den sich verbunden werden kann.
-Verbundene Klienten können sich auf den Output von laufenden ETCS-Modulen registrieren.
+The backend executed as a ``.jar`` opens a [REST API](https://de.wikipedia.org/wiki/Representational_State_Transfer#Umsetzung) which offers functionality for executing and managing the ETCS modules as 
+well as for subscribing to the output of running ETCS modules via a WebSocket.
 
 # REST API
 
-Über die Adresse
+ÜThe backend can be accessed via the address
+
 > localhost:8090
 
-können (statische) Anfragen an das Backend gestellt werden.
+to perform (static) requests.
 
-Folgende Anfragen sind verfügbar:
+The following requests are available:
 
 ## ApplicationController
 
-Den [ApplicationController](src/main/java/ebd/etcsLauncher/backend/api/controller/ApplicationController.java)
-betreffende Anfragen
-beinhalten das Terminieren der Backend-Anwendung.
+Requests related to the [ApplicationController](src/main/java/ebd/etcsLauncher/backend/api/controller/ApplicationController.java) include terminating the backend application.
 
-### POST Anfragen
+### POST Requests
 
 #### 1. Shutdown Backend
 
-Terminiert die Backend-Anwendung, wenn keine ETCS-Module laufen.
+Terminates the backend application if no ETCS modules are currently running.
+
 
 > ```
 > POST http://localhost:8090/shutdown
 > ```
 
 ## ModuleManager
+## ModuleManager
 
-Den [ModuleManager](src/main/java/ebd/etcsLauncher/backend/model/moduleManager/ModuleManager.java) betreffende
-Anfragen beinhalten das Verwalten
-von ETCS-Modulen.
+Requests related to the [ModuleManager](src/main/java/ebd/etcsLauncher/backend/model/moduleManager/ModuleManager.java) involve the management of ETCS modules.
 
-### GET Anfragen
+### GET Requests
 
 #### 1. Get Available Modules
 
-Liefert die Liste der verfügbaren ETCS-Module.
+Returns the list of available ETCS modules.
 
 > ```
 > GET http://localhost:8090/moduleManager/availableModules
@@ -50,7 +45,7 @@ Liefert die Liste der verfügbaren ETCS-Module.
 
 #### 2. Get Config Values
 
-Liefert die Liste der config-Variablen des verfügbaren ETCS-Moduls.
+Returns the list of configuration variables for the specified available ETCS module.
 
 > ```
 > GET http://localhost:8090/moduleManager/availableModules/MODULENAME/MODULEVERSION/configValues
@@ -61,24 +56,21 @@ Liefert die Liste der config-Variablen des verfügbaren ETCS-Moduls.
 > **MODULEVERSION =** ["X.Y.Z"]
 >
 
-### POST Anfragen
+### POST requests
 
 #### 1. Scan File System
 
-Durchsucht das interne Dateisystem nach verfügbaren ETCS-Modulen.
-
-Liefert anschließend die Liste an verfügbaren ETCS-Modulen.
+Scans the internal file system for available ETCS modules and returns the resulting list of available modules.
 
 > ```
 > POST http://localhost:8090/moduleManager/availableModules/scanFileSystem
 > ```
 
-### PUT Anfragen
+### PUT requests
 
 #### 1. Add Available Module
 
-Kopiert die .jar für ein ETCS-Modul in das interne Dateisystem und fügt
-das ETCS-Modul der Liste an verfügbaren ETCS-Modulen hinzu.
+Copies an ETCS module's `.jar` file into the internal file system and adds the module to the list of available ETCS modules.
 
 > ```
 > PUT http://localhost:8090/moduleManager/availableModules/MODULENAME/MODULEVERSION?pathToJar=PATHTOJARFILE
@@ -97,7 +89,7 @@ das ETCS-Modul der Liste an verfügbaren ETCS-Modulen hinzu.
 
 #### 2. Change Config Value
 
-Ändert den Wert einer Config-Variablen eines verfügbaren ETCS-Moduls.
+Updates the value of a configuration variable for an available ETCS module.
 
 > ```
 > PUT http://localhost:8090/moduleManager/availableModules/MODULENAME/MODULEVERSION/configValues?variableName=VARIABLENAME&newValue=NEWVALUE
@@ -118,8 +110,7 @@ das ETCS-Modul der Liste an verfügbaren ETCS-Modulen hinzu.
 
 #### 3. Set Command Line Arguments
 
-Speichert die Kommandozeilen-Argumente des verfügbaren ETCS-Moduls, die beim Ausführen
-der .jar Datei verwendet werden.
+Saves the command-line arguments for an available ETCS module, which are used when running the `.jar` file.
 
 > ```
 > PUT http://localhost:8090/moduleManager/availableModules/MODULENAME/MODULEVERSION/commandLineArguments
@@ -146,12 +137,12 @@ der .jar Datei verwendet werden.
 > }
 > ```
 
-### DELETE Anfragen
+### DELETE requests
 
 #### 1. Remove Available Module
 
-Löscht das verfügbare ETCS-Modul aus der Liste der verfügbaren ETCS-Module und löscht
-den internen Ordner, der nach der Version des ETCS-Moduls benannt ist.
+Deletes the available ETCS module from the list of available ETCS modules and removes the corresponding internal
+folder named after the module’s version.
 
 > ```
 > DELETE http://localhost:8090/moduleManager/availableModules/MODULENAME/MODULEVERSION
@@ -163,7 +154,7 @@ den internen Ordner, der nach der Version des ETCS-Moduls benannt ist.
 
 #### 2. Delete Command Line Arguments
 
-Löscht alle Kommandozeilen-Argumente des verfügbaren ETCS-Moduls.
+Removes all command-line arguments for the available ETCS module.
 
 > ```
 > DELETE http://localhost:8090/moduleManager/availableModules/MODULENAME/MODULEVERSION/commandLineArguments
@@ -175,25 +166,24 @@ Löscht alle Kommandozeilen-Argumente des verfügbaren ETCS-Moduls.
 
 ## ProcessManager
 
-Den [ProcessManager](src/main/java/ebd/etcsLauncher/backend/model/processManager/ProcessManager.java) betreffende
-Anfragen beinhalten das Starten
-und Verwalten von laufenden ETCS-Modulen.
+Requests related to the [ProcessManager](src/main/java/ebd/etcsLauncher/backend/model/processManager/ProcessManager.java) handle the starting and management of running ETCS modules.
 
-### GET Anfragen
+
+### GET requests
 
 #### 1. Get Running Modules
 
-Liefert die Liste aller laufenden ETCS-Module.
+Returns all currently running ETCS modules.
 
 > ```
 > GET http://localhost:8090/processManager/running
 > ```
 
-### POST Anfragen
+### POST requests
 
 #### 1. Run Modules To Run
 
-Startet die spezifizierten und verfügbaren ETCS-Module.
+Starts the specified available ETCS modules.
 
 > ```
 > POST http://localhost:8090/processManager/run
@@ -223,7 +213,7 @@ Startet die spezifizierten und verfügbaren ETCS-Module.
 
 #### 2. Send Input To Running Module
 
-Sendet input an ein laufendes ETCS-Modul.
+Forwards input to a running ETCS module.
 
 > ```
 > POST http://localhost:8090/processManager/running/MODULENAME?input=INPUT
@@ -239,19 +229,17 @@ Sendet input an ein laufendes ETCS-Modul.
 
 #### 3. Stop Running Modules
 
-Stoppt alle laufenden ETCS-Module.
+Terminates all running ETCS modules.
 
 > ```
 > POST http://localhost:8090/processManager/stop
 > ```
 
-### PUT Anfragen
+### PUT requests
 
 #### 1. Set Delay Between Starting Of Modules
 
-Setzt die Zeit in Sekunden zwischen dem Starten der ETCS-Module, **wenn**
-eine Verzögerung notwendig ist. Beim Ausführen von ETCS-Modulen, wo keine
-Verzögerung notwendig ist, wird keine Verzögerung eingebaut.
+Sets the delay (in seconds) between starting ETCS modules when a delay is required. No delay is applied if it is not necessary.
 
 > ```
 > PUT http://localhost:8090/processManager/delay?delayBetweenStarting=DELAY
@@ -261,24 +249,23 @@ Verzögerung notwendig ist, wird keine Verzögerung eingebaut.
 
 # WebSocket
 
-### 1. Mit WebSocket verbinden
+### 1. WebSocket Connection
 
-Klienten können sich unter
+Clients can connect using the following endpoint:
+
 
 > ```
 > http://localhost:8090/processManager/webSocket
 > ```
 
-mit dem WebSocket verbinden.
+### 2. Receive ETCS Module Output
 
-### 2. ETCS-Modul-Output erhalten
-
-Klienten können sich unter
+Clients can connect at:
 
 > ```
 > http://localhost:8090/processManager/running/MODULENAME
-> ```
+>```
+>
 > **MODULENAME =** ["CORE", "DMI", "TMS", "smartLogic", "ScenarioControlServer"]
 
-registrieren, um den Output eines laufenden ETCS-Moduls mit dem Namen MODULENAME
-in Echtzeit zu erhalten.
+to register and receive the real-time output of a running ETCS module identified by MODULENAME.
