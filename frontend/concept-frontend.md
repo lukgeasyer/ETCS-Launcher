@@ -1,20 +1,16 @@
-# Konzeptdokumentation
-
-## etcsLauncher - Frontend
+# Concept documentation ETCS-Launcher - Frontend
 
 > **Tools:** Svelte, TypeScript, Tailwind CSS, HTML, Electron
 >
 > **UI-Library:** [SkeletonUI](https://www.skeleton.dev)
 
-Die grafische Oberfläche - also das Frontend - vom ETCS-Launcher sind Svelte-Components, die traditionell
-eine Website darstellen, gepackt als Desktop-Anwendung über [Electron](https://www.electronjs.org/de/).
+The graphical UI of the ETCS-Launcher consists of Svelte-components which are served traditionally as a website bundled into a
+desktop application via [Electron](https://www.electronjs.org/de/).
 
 ## Svelte Component
 
-Eine Svelte-Component beinhaltet TypeScript Quellcode zum Steuern der dynamischen Inhalte der Seite,
-HTML-Quellcode, der die Struktur der Seite festlegt und darin eingebettet Tailwind CSS Klassen
-(hier beispielsweise ```class="card variant-ghost p-4 m-4"```), die die
-HTML-Elemente "stylen":
+A Svelte-component consists of TypeScript to specify the dynamic contents of the HTML. Styling is done via Tailwind CSS (here for example the
+```class="card variant-ghost p-4 m-4"``` part):
 
 ```
 <------- Component.svelte -------> 
@@ -44,9 +40,8 @@ HTML-Elemente "stylen":
 
 ## Skeleton UI
 
-Skeleton UI ist eine Library für UI-Elemente in Svelte. Diese UI-Elemente können zu Beginn
-der TypeScript-Komponente importiert und als Komponente im HTML-Code verwendet werden
-([Accordions](https://www.skeleton.dev/components/accordions) als Beispiel):
+Skeleton UI is a style component library. The used elements can be imported at the beginning of the TypeScript part.
+([Accordions](https://www.skeleton.dev/components/accordions) as an example):
 
 ```
 <script lang="ts">
@@ -68,9 +63,9 @@ der TypeScript-Komponente importiert und als Komponente im HTML-Code verwendet w
 </Accordion>
 ```
 
-## Dateisystem
+## File system
 
-Das Dateisystem des Frontends folgt einem speziellen Aufbau:
+The file system of the frontend follows a specific structure:
 
 ```
 frontend
@@ -110,33 +105,27 @@ frontend
 │   [other files]
 ``` 
 
-Ordner der Form `__ordner__` sind Ordner, die nicht in git enthalten sind und erst im Laufe der
-Entwicklungsphase automatisch erstellt werden.
+Folders of the form `__folder__` are folders not included in git which get created during the development process.
 
-Im Folgenden sollen alle oben gezeigten Ordner kurz beschrieben werden:
+Folders not included in git:
 
-Ordner, die nicht in git enthalten sind:
+- `.svelte-kit` includes the [Svelte-Kit](https://kit.svelte.dev) executable
+- `build` includes HTML files which get created from the `.svelte` files
+- `dist` includes `.cjs` files which get compiled from TypeScript files in cases where TypeScript is not supported for certain packages
+- `node_modules` includes the source code for the npm dependencies
+- `out` includes the bundled application binaries
 
-- `.svelte-kit` beinhaltet die [Svelte-Kit](https://kit.svelte.dev) Anwendung
-- `build` beinhaltet generierte HTML Dateien, die aus den `.svelte` Dateien erzeugt werden
-- `dist` beinhaltet `.cjs` Dateien, die beim Kompilieren von TypeScript Dateien erzeugt werden, wenn beispielsweise
-  keine TypeScript-Dateien von bestimmten Paketen unterstützt werden
-- `node_modules` beinhaltet den Quellcode aller hinzugefügten Packages, also beispielsweise Electron,
-  Svelte oder Tailwind CSS
-- `out` beinhaltet die gebaute Desktop-Anwendung, die als Release bereitgestellt werden kann
+Folders included in git:
 
-Ordner, die in git enthalten sind:
+* `src/constants` contains constants and configuration variables.
+* `src/lib` contains globally used resources, such as backend URLs or icons.
+* `src/routes` contains the Svelte components that define the application's pages.
+* `src/stores` contains Svelte writable stores that are used globally throughout the application.
+* `src/utils` contains utility functions, for example for communication with the backend.
+* `src/global.d.ts` contains globally used TypeScript type definitions.
+* `src/main.ts` contains the definition and initialization of the Electron application.
+* `src/preload.ts` contains preload scripts, for example to facilitate communication between the Electron environment, which has access to the file system, and the Svelte components.
+* `tests` contains the test suite.
+* `package.json` contains the definitions of the project's dependencies (packages) and scripts.
 
-- `src/constants` beinhaltet Konstanten und Konfigurationsvariablen
-- `src/lib` beinhaltet global genutzte Resourcen, wie beispielsweise Backend URLs oder Icons
-- `src/routes` beinhaltet die Svelte Components, die die Seiten der Anwendung definieren
-- `src/stores` beinhalten Svelte writable Variablen, die global genutzt werden
-- `src/utils` beinhaltet Utility-Funktionen, beispielsweise bei der Kommunikation mit dem Backend
-- `src/global.d.ts` beinhaltet global genutzte Definitionen von TypeScript Typen
-- `src/main.ts` beinhaltet die Definition der Electron Anwendung
-- `src/preload.ts` beinhaltet vorgeladene Skripte, beispielsweise für die Kommunikation zwischen der
-  Electron-Umgebung, die Zugriff auf das Dateisystem hat, und den Svelte Components
-- `tests` beinhaltet Tests
-- `package.json` beinhaltet die Definition der hinzugefügten Packages und Skripte
-
-Für weitere Informationen zum Entwicklungsprozess siehe das `README.md`.
+For further information about the development process, please refer to the `README.md`.
