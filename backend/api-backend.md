@@ -56,7 +56,7 @@ Returns the list of configuration variables for the specified available ETCS mod
 > **MODULEVERSION =** ["X.Y.Z"]
 >
 
-### POST Anfragen
+### POST requests
 
 #### 1. Scan File System
 
@@ -66,7 +66,7 @@ Scans the internal file system for available ETCS modules and returns the result
 > POST http://localhost:8090/moduleManager/availableModules/scanFileSystem
 > ```
 
-### PUT Anfragen
+### PUT requests
 
 #### 1. Add Available Module
 
@@ -137,7 +137,7 @@ Saves the command-line arguments for an available ETCS module, which are used wh
 > }
 > ```
 
-### DELETE Anfragen
+### DELETE requests
 
 #### 1. Remove Available Module
 
@@ -169,7 +169,7 @@ Removes all command-line arguments for the available ETCS module.
 Requests related to the [ProcessManager](src/main/java/ebd/etcsLauncher/backend/model/processManager/ProcessManager.java) handle the starting and management of running ETCS modules.
 
 
-### GET Anfragen
+### GET requests
 
 #### 1. Get Running Modules
 
@@ -179,7 +179,7 @@ Returns all currently running ETCS modules.
 > GET http://localhost:8090/processManager/running
 > ```
 
-### POST Anfragen
+### POST requests
 
 #### 1. Run Modules To Run
 
@@ -235,7 +235,7 @@ Terminates all running ETCS modules.
 > POST http://localhost:8090/processManager/stop
 > ```
 
-### PUT Anfragen
+### PUT requests
 
 #### 1. Set Delay Between Starting Of Modules
 
